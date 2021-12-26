@@ -3,12 +3,14 @@ import type { ComlinkWorker } from '../utils/comlink-worker'
 import { wrap } from 'comlink'
 import { runBigTask, runBigTaskAsync } from '../utils/big-task'
 import * as styles from '../styles/dashboard.module.css'
+import { set } from 'idb-keyval';
 
 type DashboardProps = {
   setData: (param: string) => void
 }
 
-const TASK_SIZE = 90000000
+// const TASK_SIZE = 90000000
+const TASK_SIZE = 9000
 
 const Dashboard: FC<DashboardProps> = ({ setData }) => {
   return (
@@ -42,6 +44,7 @@ const Dashboard: FC<DashboardProps> = ({ setData }) => {
 
           const { runBigTask } = wrap<ComlinkWorker>(worker)
           setData(await runBigTask(TASK_SIZE))
+          worker.terminate();
         }}
       >
         Comlink WebWorker
@@ -49,6 +52,7 @@ const Dashboard: FC<DashboardProps> = ({ setData }) => {
       <button
         onClick={async () => {
           setData('loading')
+          // set("test", "test11111111")
           const worker = new Worker(
             new URL('../utils/vanilla-worker', import.meta.url),
             {
@@ -61,6 +65,7 @@ const Dashboard: FC<DashboardProps> = ({ setData }) => {
 
           worker.addEventListener('message', function (evt) {
             setData(evt.data)
+            // worker.terminate();
           })
         }}
       >

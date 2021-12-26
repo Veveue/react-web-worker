@@ -27,13 +27,7 @@ export function Root() {
         >
           boop
         </button>
-        <div
-          id="screen"
-          className={styles.screen}
-          style={{
-            backgroundColor: `${data === 'loading' ? 'orange' : 'transparent'}`,
-          }}
-        />
+        <input type="text" />
         <span>{data}</span>
       </div>
       {/* <footer className={styles.bottom}>

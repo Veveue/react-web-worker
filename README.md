@@ -14,7 +14,7 @@ npm i
 3. Run dev server
 
 ```
-npm run dev
+npm run start
 ```
 
 Go to port [localhost:1234](http://localhost:1234)
