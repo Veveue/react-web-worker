@@ -1,34 +1,40 @@
 {
-  "name": "parcel-web-worker",
-  "version": "1.0.0",
-  "description": "",
-  "source": "src/index.html",
+  "private": true,
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
   },
-  "author": {
-    "name": "Atila Fassina",
-    "email": "oss@fassina.eu",
-    "url": "https://atila.io"
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   },
-  "license": "MIT",
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  },
-  "devDependencies": {
-    "@types/react": "^17.0.24",
-    "@types/react-dom": "^17.0.9",
-    "parcel": "^2.0.0-rc.0",
-    "parcel-transformer-ts-css-modules": "^1.0.6",
-    "prettier": "^2.4.1"
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
   },
   "dependencies": {
+    "@ant-design/pro-layout": "^6.5.0",
     "comlink": "^4.3.1",
-    "idb-keyval": "^6.0.3",
     "localforage": "^1.10.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "17.x",
+    "react-dom": "17.x",
+    "umi": "^3.5.20"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.5.20",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.0",
+    "typescript": "^4.1.2",
+    "yorkie": "^2.0.0"
   }
 }
