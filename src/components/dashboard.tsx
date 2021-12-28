@@ -43,7 +43,8 @@ const Dashboard: FC<DashboardProps> = ({ setData }) => {
           )
 
           const { runBigTask } = wrap<ComlinkWorker>(worker)
-          setData(await runBigTask(TASK_SIZE))
+          const data = await runBigTask(TASK_SIZE)
+          setData(data)
           worker.terminate();
         }}
       >
@@ -65,7 +66,7 @@ const Dashboard: FC<DashboardProps> = ({ setData }) => {
 
           worker.addEventListener('message', function (evt) {
             setData(evt.data)
-            // worker.terminate();
+            worker.terminate();
           })
         }}
       >

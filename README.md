@@ -37,3 +37,6 @@ Will run the computation on a separate thread, in paralell the worker-thread is 
 
 [Comlink](https://github.com/GoogleChromeLabs/comlink) is a library that allows you to work on the worker-thread without feeling you left the main thread.
 I consider it equivalent to how `async/await` did for Promises.
+
+## parceljs
+https://zh.parceljs.org/
